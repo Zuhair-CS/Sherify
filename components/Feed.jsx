@@ -15,14 +15,15 @@ const BlogCardList = ({ data, handleTagClick }) => {
 
 const Feed = () => {
   const [searchText, setSearchText] = useState('');
-  const [posts, setPost] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await fetch('/api/blog');
         const data = await response.json();
-        setPost(data);
+        setPosts(data);
       } catch (err) {
         console.error('Failed to fetch posts:', err);
       }
@@ -31,9 +32,25 @@ const Feed = () => {
     fetchPosts();
   }, []);
 
+  const filterPosts = (text) => {
+    const regex = new RegExp(text, 'i'); // case-insensitive
+    return posts.filter(
+      (post) =>
+        regex.test(post.blog) ||
+        regex.test(post.tag) ||
+        regex.test(post.creator.username)
+    );
+  };
+
   const handleSearchChange = (e) => {
-    setSearchText(e.target.value);
-    // Optionally implement filtering logic here
+    const text = e.target.value;
+    setSearchText(text);
+    setFilteredPosts(filterPosts(text));
+  };
+
+  const handleTagClick = (tag) => {
+    setSearchText(tag);
+    setFilteredPosts(filterPosts(tag));
   };
 
   return (
@@ -41,7 +58,7 @@ const Feed = () => {
       <form className="relative w-full flex-center">
         <input
           type="text"
-          placeholder="Search for a tag or username"
+          placeholder="Search for a tag, blog, or username"
           value={searchText}
           onChange={handleSearchChange}
           required
@@ -49,7 +66,10 @@ const Feed = () => {
         />
       </form>
 
-      <BlogCardList data={posts} handleTagClick={() => {}} />
+      <BlogCardList
+        data={searchText ? filteredPosts : posts}
+        handleTagClick={handleTagClick}
+      />
     </section>
   );
 };
