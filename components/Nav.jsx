@@ -49,7 +49,7 @@ export const Nav = () => {
       <div className="sm:hidden flex relative">
         {session?.user ? (
           <div className="flex pointer_cursor cursor-pointer ">
-            <Image src={session?.user.image} width={30} height={30} className="object-contain rounded-full" alt="Profile_logo" onClick={()=>{
+            <Image src="/assets/icons/menu.svg" width={30} height={30} className="object-contain rounded-full" alt="Profile_logo" onClick={()=>{
               setToggleDropdown((prev)=> !prev);
             }}/>
 
