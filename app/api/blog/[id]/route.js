@@ -8,12 +8,21 @@ export const GET = async (request, { params }) => {
     await connectToDb();
     const blog = await Blog.findById(awaitedParams.id).populate('creator');
     if (!blog) {
-      return new Response("Prompt not found", { status: 404 });
+      return new Response(JSON.stringify({ error: "Blog not found" }), { 
+        status: 404,
+        headers: { 'Content-Type': 'application/json' }
+      });
     }
-    return new Response(JSON.stringify(blog), { status: 200 });
+    return new Response(JSON.stringify(blog), { 
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
   } catch (error) {
     console.error("GET error:", error);
-    return new Response("Failed to fetch blog", { status: 500 });
+    return new Response(JSON.stringify({ error: "Failed to fetch blog" }), { 
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 };
 
@@ -25,7 +34,10 @@ export const PATCH = async (request, { params }) => {
     await connectToDb();
     const existingBlog = await Blog.findById(awaitedParams.id);
     if (!existingBlog) {
-      return new Response("Blog not found!", { status: 404 });
+      return new Response(JSON.stringify({ error: "Blog not found!" }), { 
+        status: 404,
+        headers: { 'Content-Type': 'application/json' }
+      });
     }
 
     existingBlog.blog = blog;
@@ -33,10 +45,16 @@ export const PATCH = async (request, { params }) => {
 
     await existingBlog.save();
 
-    return new Response(JSON.stringify(existingBlog), { status: 200 });
+    return new Response(JSON.stringify(existingBlog), { 
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
   } catch (error) {
     console.error("PATCH error:", error);
-    return new Response("Failed to update blog", { status: 500 });
+    return new Response(JSON.stringify({ error: "Failed to update blog" }), { 
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 };
 
@@ -46,9 +64,15 @@ export const DELETE = async(_request , {params})=>{
   try {
     await connectToDb();
     await Blog.findByIdAndDelete(awaitedParams.id);
-    return new Response("Blog Deleted Successfully", { status: 200 });
+    return new Response(JSON.stringify({ message: "Blog Deleted Successfully" }), { 
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
   } catch (error) {
     console.error("DELETE error:", error);
-    return new Response("Failed to delete blog", { status: 500 });
+    return new Response(JSON.stringify({ error: "Failed to delete blog" }), { 
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 };
