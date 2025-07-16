@@ -20,7 +20,7 @@ export const Nav = () => {
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href="/" className="flex gap-2 flex-center">
         <Image src= "/assets/images/logo.svg" alt = "Sherify Logo" width={30} height={30} className="object-contain"/>
-        <p className="logo_text">Sherify</p>
+        <p className="orange_gradient font-bold text-2xl" >Sherify</p>
       </Link>
 
 {/* Desktop navigation */}
@@ -48,13 +48,13 @@ export const Nav = () => {
       {/* mobile navigation */}
       <div className="sm:hidden flex relative">
         {session?.user ? (
-          <div className="flex ">
+          <div className="flex pointer_cursor cursor-pointer ">
             <Image src={session?.user.image} width={30} height={30} className="object-contain rounded-full" alt="Profile_logo" onClick={()=>{
               setToggleDropdown((prev)=> !prev);
             }}/>
 
             {toggleDropdown && (
-              <div className="dropdown">
+              <div className="dropdown glassmorphism">
                 <Link href="/profile" className="dropdown_link" onClick={() => setToggleDropdown(false)}>
                 My Profile
                 </Link>

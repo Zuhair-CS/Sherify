@@ -1,28 +1,30 @@
 import '@/styles/globals.css'
-import {Nav} from '@/components/Nav'
-import {Provider} from '@/components/Provider'
+import { Nav } from '@/components/Nav'
+import { Provider } from '@/components/Provider'
+import SplineScene from '@/components/SplineScene'
 
 export const metadata = {
-    title: "sherify",
-    description: "This is my description in app/layout.jsx"
+  title: 'sherify',
+  description: 'This is my description in app/layout.jsx',
 }
 
-const RootLayout = ({children}) => {
+const RootLayout = ({ children }) => {
   return (
-    <html lang = "en">
-        <body>
-            <Provider>
-                <div className='main'>
-                    <div className='gradient'/>
-                </div>
-                <div className="app">
-                    <Nav/>
-                    {children}
-                </div>
-            </Provider>
-        </body>
+    <html lang="en">
+      <body>
+        {/* Background Layer */}
+        <SplineScene />
+
+        {/* Foreground App Content */}
+        <Provider>
+          <div className="app">
+            <Nav />
+            {children}
+          </div>
+        </Provider>
+      </body>
     </html>
-  )
-}
+  );
+};
 
 export default RootLayout;

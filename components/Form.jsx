@@ -10,19 +10,19 @@ const Form = ({ type, post, setPost ,submitting ,handleSubmit }) => {
       </p>
       <form onSubmit={handleSubmit} className="mt-10 w-full max-w-3xl flex flex-col gap-7 glassmorphism">
         <label >
-          <span className="font-satoshi font-semibold text-base text-gray-700">Your Blog.</span>
+          <span className="font-satoshi font-semibold text-base text-white ">Write Your Blog here.</span>
           <textarea value={post.blog} onChange={(e) => setPost({ ...post, blog: e.target.value })}
-          placeholder="Write your blog here" className="form_textarea" required></textarea>
+          placeholder="Write your blog here" className="form_textarea glassmorphism bg-gray-300" required></textarea>
         </label>
         <label >
-          <span className="font-satoshi font-semibold text-base text-gray-700">Tag {' '}
+          <span className="font-satoshi font-semibold text-base text-white">Tag {' '}
             <span>#morningThoughts, #webDevelopment, #Traveling </span>
           </span>
           <input value={post.tag} onChange={(e) => setPost({ ...post, tag: e.target.value })}
-          placeholder="#tag" className="form_textarea" required ></input>
+          placeholder="#tag" className="form_textarea glassmorphism bg-gray-300" required ></input>
         </label>
         <div className="flex-end mx-3 mb-5 gap-4">
-          <Link href ="/" className="text-grey-500 text-sm">Cancel</Link>
+          <Link href ="/" className="text-white text-sm">Cancel</Link>
           <button type="submit" disabled = {submitting} className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white">
             {type }
           </button>
