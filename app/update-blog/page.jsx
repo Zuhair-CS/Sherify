@@ -1,9 +1,9 @@
 "use client"
 import { useRouter, useSearchParams } from "next/navigation";
-import {useEffect, useState, } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import Form from '@components/Form'
 
-const EditBlog = () => {
+const EditBlogContent = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const blogId = searchParams.get('id');
@@ -53,6 +53,14 @@ const EditBlog = () => {
         <Form type="Edit" post={post} setPost={setPost} submitting={submitting}
         handleSubmit = {updateBlog}/>
     ); 
+}
+
+const EditBlog = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <EditBlogContent />
+        </Suspense>
+    );
 }
 
 export default EditBlog
