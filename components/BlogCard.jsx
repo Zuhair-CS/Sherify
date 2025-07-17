@@ -26,12 +26,9 @@ export const BlogCard = ({post, handleTagClick, handleEdit, handleDelete}) => {
             className="rounded-full object-contain"/>
 
             <div className="flex flex-col">
-              <h3 className="font-satoshi font-semibold text-gray-300">
+              <h3 className="font-satoshi font-semibold text-gray-300 text-xl tracking-wide">
                 {post.creator.username}
               </h3>
-              <p className="font-inter text-sm text-gray-300">
-                {post.creator.email}
-              </p>
             </div>
           </div>
         </Link>

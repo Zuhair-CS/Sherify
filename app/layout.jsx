@@ -4,8 +4,8 @@ import { Provider } from '@/components/Provider'
 import SplineScene from '@/components/SplineScene'
 
 export const metadata = {
-  title: 'sherify',
-  description: 'This is my description in app/layout.jsx',
+  title: 'Sherify',
+  description: 'Share your thoughts with the world using Sherify!',
 }
 
 const RootLayout = ({ children }) => {
