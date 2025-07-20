@@ -120,7 +120,23 @@ html, body {
 
 /* ----- Layouts ----- */
 .prompt_layout {
-  @apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3;
+  @apply py-8 gap-6;
+  display: grid;
+  grid-template-columns: 1fr; /* Single column on mobile */
+}
+
+/* Small screens and up - 2 columns */
+@media (min-width: 640px) {
+  .prompt_layout {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Extra large screens and up - 3 columns */
+@media (min-width: 1280px) {
+  .prompt_layout {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .feed {
