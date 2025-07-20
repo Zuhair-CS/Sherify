@@ -65,7 +65,6 @@ const ShowBlog = async({params})=>{
                         />
                         <div>
                             <h3 className="font-semibold text-gray-300">{post.creator?.username || 'Unknown User'}</h3>
-                            <p className="text-sm text-gray-400">{post.creator?.email || 'No email'}</p>
                         </div>
                     </div>
 
